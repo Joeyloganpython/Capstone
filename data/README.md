@@ -10,4 +10,5 @@ Sources for all data used in the project are list below
 <li> CDC https://www.cdc.gov/opioids/data/analysis-resources.html  
 <li> Opioid Dispensation Data by County: https://data.pa.gov/Opioid-Related/Dispensation-Data-without-Buprenorphine-Quarter-3-/rr54-ur6z
 <li> PA County Unemployment Statistics: https://data.pa.gov/Jobs-that-Pay/Local-Area-Unemployment-Statistics-LAUS-CY-2016-Cu/rqq6-7e5m
+<li> PA drug and alcohol treatment facilities: https://data.pa.gov/Opioid-Related/Drug-and-Alcohol-Treatment-Facilities-May-2018-Cou/eswt-bam9
 </ol>
