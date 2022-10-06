@@ -9,4 +9,5 @@ Sources for all data used in the project are list below
 <li> PA.gov datasets https://data.pa.gov/Opioid-Related/Overdose-Information-Network-Data-CY-January-2018-/hbkk-dwy3
 <li> CDC https://www.cdc.gov/opioids/data/analysis-resources.html  
 <li> Opioid Dispensation Data by County: https://data.pa.gov/Opioid-Related/Dispensation-Data-without-Buprenorphine-Quarter-3-/rr54-ur6z
+<li> PA County Unemployment Statistics: https://data.pa.gov/Jobs-that-Pay/Local-Area-Unemployment-Statistics-LAUS-CY-2016-Cu/rqq6-7e5m
 </ol>
