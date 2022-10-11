@@ -33,3 +33,16 @@ jobs:
       - name: Add secrets
         env: 
             APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+        run: |
+          echo What is in this directory?
+          ls -a
+          echo
+          echo Is Java installed?
+          java -version
+          echo
+          echo Is Git installed?
+          git --version
+          echo What about build tools?
+          mvn --version
+          gradle --version
+          ant -version
