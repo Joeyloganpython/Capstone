@@ -1,0 +1,10 @@
+Naloxone dataset
+
+Accidental Exposures - 45 records
+Non-Accidental Exposures - 36212 records
+
+I want the number of incidents that involved more than one person.
+
+can we add a new column that indicates all drugs for the incident / victim
+
+all
