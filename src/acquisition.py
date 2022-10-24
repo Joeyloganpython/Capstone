@@ -17,7 +17,7 @@ def get_data(client, dataset_key):
     metadata = client.get_metadata(id)
     name = metadata['name'].replace(" ", "_")
     print(name)
-    path = f"..\\data\\{name}.csv"
+    path = f"..\\data\\Pulled\\{name}.csv"
     # path = f"..\\data\\{name}.csv"
     if not os.path.isfile(path):
         results = client.get_all(id)

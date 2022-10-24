@@ -157,21 +157,21 @@ if __name__ == '__main__':
 
 
     # Loading Takeback dataset
-    takebackdf = pd.read_csv('../data/Prescription_Drug_Take-Back_Box_Locations_County_Drug_and_Alcohol_Programs.csv')
+    takebackdf = pd.read_csv('../data/Pulled/Prescription_Drug_Take-Back_Box_Locations_County_Drug_and_Alcohol_Programs.csv')
 
     # Loading treatment
-    treatdf = pd.read_csv('../data/Drug_and_Alcohol_Treatment_Facilities_May_2018_County_Drug_and_Alcohol_Programs.csv')
+    treatdf = pd.read_csv('../data/Pulled/Drug_and_Alcohol_Treatment_Facilities_May_2018_County_Drug_and_Alcohol_Programs.csv')
 
     # Risky Precribing dataset
     risky_df = pd.read_csv(
-        '../data/Risky_Prescribing_Measures_Quarter_3_2016_-_Current_Quarterly_County___Statewide_Health.csv')
+        '../data/Pulled/Risky_Prescribing_Measures_Quarter_3_2016_-_Current_Quarterly_County___Statewide_Health.csv')
 
     # Dispensation Dataset
     dispen_df = pd.read_csv(
-        '../data/Dispensation_Data_without_Buprenorphine_Quarter_3_2016_-_Current_Quarterly_County_Health.csv')
+        '../data/Pulled/Dispensation_Data_without_Buprenorphine_Quarter_3_2016_-_Current_Quarterly_County_Health.csv')
 
     # Loading Arrests dataset
-    arrests_df = pd.read_csv('../data/Opioid_Seizures_and_Arrests_CY_2013_-_Current_Quarterly_County_State_Police.csv')
+    arrests_df = pd.read_csv('../data/Pulled/Opioid_Seizures_and_Arrests_CY_2013_-_Current_Quarterly_County_State_Police.csv')
 
     # Loading County Population dataset
-    population_df = pd.read_csv('../data/County_pop.csv')
+    population_df = pd.read_csv('../data/Pulled/County_pop.csv')
