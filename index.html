@@ -1,0 +1,38 @@
+<html>
+<head>
+
+    <title>Opioid Overdose Analysis</title>
+      <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+
+    <script type="text/javascript"></script>
+
+</head>
+
+<body>
+  <div style="text-align: center;">
+    <h1> Mid-Atlantic Opioid Task Force</h1>
+    <h2> Opioid Overdose Analysis</h2>
+  </div>
+
+  	<h2 style="text-align: center;"> PA County Analysis</h2>
+	<div style="display: flex;justify-content: center;align-content: center;align-items: center;">
+		<div style = "display:block;">
+			 <tableau-viz id="tableauViz"       
+			  src='https://public.tableau.com/views/PACountyOpioid/Story1?:language=en-US&:display_count=n&:origin=viz_share_link'>
+			</tableau-viz>
+		</div>
+	</div>
+
+	<br><br><hr><br><br>
+
+	<h2 style="text-align: center;"> CDC Analysis</h2>
+	<div style="display: flex;justify-content: center;align-content: center;align-items: center;">
+		<div style = "display:block;">
+			<tableau-viz style="margin-left: 20%;" id="tableauViz2"       
+				  src='https://public.tableau.com/views/CDCNew/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link'>
+			</tableau-viz>
+		</div>
+	</div>
+</body>
+
+</html>
