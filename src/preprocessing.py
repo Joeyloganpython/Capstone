@@ -187,9 +187,6 @@ def main():
     incidents_with_naloxone(opioid_list)
 
 
-
-
-
 if __name__ == '__main__':
     main()
 
