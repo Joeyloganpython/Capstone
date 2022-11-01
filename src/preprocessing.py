@@ -140,6 +140,42 @@ def incidents_with_naloxone(opioid_list):
     print(opdfnew.head())
 
 
+def takeback():
+
+    # Loading Takeback dataset
+    takebackdf = pd.read_csv('../data/Pulled/Prescription_Drug_Take-Back_Box_Locations_County_Drug_and_Alcohol_Programs.csv')
+
+
+def treatment():
+
+    # Loading treatment
+    treatdf = pd.read_csv('../data/Pulled/Drug_and_Alcohol_Treatment_Facilities_May_2018_County_Drug_and_Alcohol_Programs.csv')
+
+
+def risky_prescribing():
+
+    # Risky Precribing dataset
+    risky_df = pd.read_csv(
+        '../data/Pulled/Risky_Prescribing_Measures_Quarter_3_2016_-_Current_Quarterly_County___Statewide_Health.csv')
+
+
+def dispensation():
+
+    # Dispensation Dataset
+    dispen_df = pd.read_csv(
+        '../data/Pulled/Dispensation_Data_without_Buprenorphine_Quarter_3_2016_-_Current_Quarterly_County_Health.csv')
+
+
+def arrests():
+    # Loading Arrests dataset
+    arrests_df = pd.read_csv('../data/Pulled/Opioid_Seizures_and_Arrests_CY_2013_-_Current_Quarterly_County_State_Police.csv')
+
+
+def county_population():
+    # Loading County Population dataset
+    population_df = pd.read_csv('../data/Pulled/County_pop.csv')
+
+
 def main():
     opioid_list = ['CARFENTANIL',
                   'FENTANYL',
@@ -152,26 +188,10 @@ def main():
 
 
 
+
+
 if __name__ == '__main__':
     main()
 
 
-    # Loading Takeback dataset
-    takebackdf = pd.read_csv('../data/Pulled/Prescription_Drug_Take-Back_Box_Locations_County_Drug_and_Alcohol_Programs.csv')
 
-    # Loading treatment
-    treatdf = pd.read_csv('../data/Pulled/Drug_and_Alcohol_Treatment_Facilities_May_2018_County_Drug_and_Alcohol_Programs.csv')
-
-    # Risky Precribing dataset
-    risky_df = pd.read_csv(
-        '../data/Pulled/Risky_Prescribing_Measures_Quarter_3_2016_-_Current_Quarterly_County___Statewide_Health.csv')
-
-    # Dispensation Dataset
-    dispen_df = pd.read_csv(
-        '../data/Pulled/Dispensation_Data_without_Buprenorphine_Quarter_3_2016_-_Current_Quarterly_County_Health.csv')
-
-    # Loading Arrests dataset
-    arrests_df = pd.read_csv('../data/Pulled/Opioid_Seizures_and_Arrests_CY_2013_-_Current_Quarterly_County_State_Police.csv')
-
-    # Loading County Population dataset
-    population_df = pd.read_csv('../data/Pulled/County_pop.csv')
