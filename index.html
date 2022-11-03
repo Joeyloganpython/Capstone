@@ -6,29 +6,29 @@
 
     <script type="text/javascript"></script>
 
+    <link rel="stylesheet" type="text/css" href="./CSS/styles.css" />
 </head>
 
 <body>
-  <div style="text-align: center;">
-    <h1> Mid-Atlantic Opioid Task Force</h1>
-    <h2> Opioid Overdose Analysis</h2>
+  <div>
+    <h1> <i>Mid-Atlantic Opioid Task Force</i></h1>
+    <h2 style="margin-top: -2%;"> Opioid Overdose Analysis</h2>
   </div>
 
-  	<h2 style="text-align: center;"> PA County Analysis</h2>
-	<div style="display: flex;justify-content: center;align-content: center;align-items: center;">
-		<div style = "display:block;">
+  	<h2> PA County Analysis</h2>
+	<div class="viz-cont">
+		<div class="viz">
 			 <tableau-viz id="tableauViz"       
 			  src='https://public.tableau.com/views/PACountyOpioid/Story1?:language=en-US&:display_count=n&:origin=viz_share_link'>
 			</tableau-viz>
 		</div>
 	</div>
-
-	<br><br><hr><br><br>
-
-	<h2 style="text-align: center;"> CDC Analysis</h2>
-	<div style="display: flex;justify-content: center;align-content: center;align-items: center;">
-		<div style = "display:block;">
-			<tableau-viz style="margin-left: 20%;" id="tableauViz2"       
+	<div class="horizontal_line"><hr></div>
+	
+	<h2> CDC - Overdose Death Analysis</h2>
+	<div class="viz-cont">
+		<div coass="viz">
+			<tableau-viz id="tableauViz2"
 				  src='https://public.tableau.com/views/CDCNew/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link'>
 			</tableau-viz>
 		</div>
