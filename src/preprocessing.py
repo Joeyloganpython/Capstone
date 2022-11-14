@@ -254,15 +254,15 @@ def arrests():
     # Creating computed collumns
     arrests_df['%Incidents Fentanyl'] = (arrests_df['Opioid Incident Count - Fentanyl'] /
                                         (arrests_df['Opioid Incident Count - Fentanyl'] + arrests_df['Opioid Incident Count - Opium'] + arrests_df[
-                                            'Opioid Incident Count - Heroin'] * 100))
+                                            'Opioid Incident Count - Heroin']) * 100)
 
     arrests_df['%Arrests Fentanyl'] = (arrests_df['Opioid Arrest Count - Fentanyl'] /
                                       (arrests_df['Opioid Arrest Count - Fentanyl'] + arrests_df['Opioid Arrest Count - Opium'] + arrests_df[
-                                          'Opioid Arrest Count - Heroin'] * 100))
+                                          'Opioid Arrest Count - Heroin'] ) * 100)
 
     arrests_df['%Quantity Fentanyl'] = (arrests_df['Drug Quantity - Fentanyl'] /
                                        (arrests_df['Drug Quantity - Fentanyl'] + arrests_df['Drug Quantity - Opium'] + arrests_df[
-                                           'Drug Quantity - Heroin'] * 100))
+                                           'Drug Quantity - Heroin'] ) * 100)
 
     return arrests_df
 
