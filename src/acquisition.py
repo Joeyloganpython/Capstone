@@ -12,18 +12,27 @@ import os
 # Unauthenticated client only works with public data sets. Note 'None'
 # in place of application token, and no username or password:
 
-def get_data(client, dataset_key):
+
+def get_data(client, dataset_key, overwrite=False):
     id = dataset_key
     metadata = client.get_metadata(id)
     name = metadata['name'].replace(" ", "_")
     print(name)
+
     path = f"..\\data\\Pulled\\{name}.csv"
     # path = f"..\\data\\{name}.csv"
-    if not os.path.isfile(path):
+    if not os.path.isfile(path) or overwrite:
         results = client.get_all(id)
-        # results = client.get(id)
+
         # Convert to pandas DataFrame
         results_df = pd.DataFrame.from_records(results)
+
+        field_mapper = dict()
+        for column in metadata['columns']:
+            field_mapper[column['fieldName']] = column['name']
+
+        results_df.rename(columns=field_mapper, inplace=True)
+
         results_df.to_csv(path)
 
 def cdc(app_token):
@@ -38,7 +47,7 @@ def pa(app_token):
     dataset_keys = {'wmgc-6qvd', 'wst4-3int', '7m4f-4k58', 'vjk8-em4w', 'hbkk-dwy3', 'rr54-ur6z',
                     'rqq6-7e5m', 'eswt-bam9', 'krjw-t48p'}
     for dataset_key in dataset_keys:
-        get_data(client, dataset_key)
+        get_data(client, dataset_key, overwrite=True)
 
 def main():
     app_token = os.getenv('SOCRATA_APP_TOKEN')

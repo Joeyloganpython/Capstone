@@ -62,7 +62,7 @@ def extract_drugs_by_victim(df):
 
 def incidents_with_naloxone(opioid_list):
     # Loading PA GOV
-    df = pd.read_csv('../data/PAGOV.csv')
+    df = pd.read_csv('../data/Pulled/Emergency_Medical_Services_(EMS)_Naloxone_Dose_Administered_CY_2018_-_Current_Quarterly_County_Health.csv')
 
     keep_columns = ['Incident ID',
                     'Incident Date',
@@ -136,55 +136,160 @@ def incidents_with_naloxone(opioid_list):
                        'Percent Survive Overdose Per County/Year',
                        'Total Number of PA.gov Overdoses Per County/Year']].drop_duplicates()
 
-    print(len(opdfnew))
-    print(opdfnew.head())
+    return (opdfnew)
 
 
 def takeback():
-
     # Loading Takeback dataset
     takebackdf = pd.read_csv('../data/Pulled/Prescription_Drug_Take-Back_Box_Locations_County_Drug_and_Alcohol_Programs.csv')
+
+    # Fixing County name
+    takebackdf = fix(takebackdf, False)
+
+    # Count takeback locations for each county
+    takebackdf = takebackdf.groupby('County').count()['Drug Take-Back Site'].reset_index()
+    takebackdf.rename(columns={'Drug Take-Back Site':'Total Take Back Locations'})
+    return takebackdf
 
 
 def treatment():
 
     # Loading treatment
-    treatdf = pd.read_csv('../data/Pulled/Drug_and_Alcohol_Treatment_Facilities_May_2018_County_Drug_and_Alcohol_Programs.csv')
+    treatment_locations = pd.read_csv('../data/Pulled/Drug_and_Alcohol_Treatment_Facilities_May_2018_County_Drug_and_Alcohol_Programs.csv')
+    treatment_loc_counts = treatment_locations.groupby('County').count()['Name of Facility'].reset_index()
+    treatment_loc_counts.rename(columns = {'Name of Facility': 'Total Treatment Locations'}, inplace=True)
+    return treatment_loc_counts
 
 
 def risky_prescribing():
-
     # Risky Precribing dataset
     risky_df = pd.read_csv(
-        '../data/Pulled/Risky_Prescribing_Measures_Quarter_3_2016_-_Current_Quarterly_County___Statewide_Health.csv')
+        '../data/Pulled/Risky_Prescribing_Measures_Quarter_3_2016_-_Current_Quarterly_County_&_Statewide_Health.csv')
+
+    # Dropping any duplicates from initial dataset
+    risky_df.drop('Unnamed: 0', axis=1, inplace=True)
+    risky_df.drop_duplicates(inplace=True)
+
+    # Removing PA as to not count twice
+    risky_df = risky_df[risky_df['County'] != 'Pennsylvania']
+
+    keep_columns = ['County', 'Year', 'Risky Measure Type', 'Rate or Count']
+    risky_df = risky_df[keep_columns]
+
+    # exclude 'rates' and counts that could result in duplicates
+    keep_rate_or_count = ['Number of Individuals Seeing 3+ Prescribers and 3+ Dispensers',
+                          'Number of Individuals with Average Daily MME > 50',
+                          'Number of Individuals with Overlapping Opioid/Benzodiazepine Prescriptions']
+
+    risky_df = risky_df[risky_df['Risky Measure Type'].isin(keep_rate_or_count)].dropna()
+
+    # Summing per county/year
+    risky_df = risky_df.groupby(['County', 'Year', 'Risky Measure Type']).sum().reset_index()
+    risky_df.rename(columns={'Rate or Count': 'Total Risky Prescriptions'}, inplace=True)
+
+    risky_df = risky_df.pivot(index=['County', 'Year'],
+                              columns='Risky Measure Type',
+                              values='Total Risky Prescriptions').reset_index()
+    return risky_df
 
 
 def dispensation():
-
     # Dispensation Dataset
     dispen_df = pd.read_csv(
         '../data/Pulled/Dispensation_Data_without_Buprenorphine_Quarter_3_2016_-_Current_Quarterly_County_Health.csv')
 
+    # removing the index column and removing any duplicates in the initial dataset
+    dispen_df.drop('Unnamed: 0', axis=1, inplace=True)
+    dispen_df.drop_duplicates(inplace=True)
+
+    # Measures will be for all ages and all genders
+    dispen_df = dispen_df[dispen_df['Age Group'] == 'All Ages']
+    dispen_df = dispen_df[dispen_df['Gender'] == 'All Genders']
+    dispen_df = dispen_df.rename(columns={'County Name': 'County'})
+
+    keep_columns = ['County', 'Year', 'Type of Rate or Count Measure', 'Rate or Count']
+
+    dispen_df = dispen_df[keep_columns]
+
+    keep_rate_or_count = ['Number of Dispensations (by pharmacy location)',
+                          'Number of Prescriptions (by patient location)']
+
+    dispen_df = dispen_df[dispen_df['Type of Rate or Count Measure'].isin(keep_rate_or_count)].dropna()
+
+    dispen_df = dispen_df.groupby(['County', 'Year', 'Type of Rate or Count Measure']).sum().reset_index()
+    dispen_df.rename(columns={'Rate or Count': 'Total Prescriptions or Dispensations'}, inplace=True)
+
+    dispen_df = dispen_df.pivot(index=['County', 'Year'],
+                                columns='Type of Rate or Count Measure',
+                                values='Total Prescriptions or Dispensations').reset_index()
+
+    return dispen_df
 
 def arrests():
     # Loading Arrests dataset
     arrests_df = pd.read_csv('../data/Pulled/Opioid_Seizures_and_Arrests_CY_2013_-_Current_Quarterly_County_State_Police.csv')
+
+    # removing the index column and removing any duplicates in the initial dataset
+    arrests_df.drop('Unnamed: 0', axis=1, inplace=True)
+    arrests_df.drop_duplicates(inplace=True)
+
+    keep_columns = ['County Name', 'Year', 'Drug', 'Incident Count', 'Drug Quantity', 'Arrests']
+    arrests_df = arrests_df[keep_columns]
+
+    arrests_df = arrests_df.groupby(['County Name', 'Year', 'Drug']).sum().reset_index()
+    arrests_df.rename(columns={'County Name': 'County',
+                               'Arrests': 'Opioid Arrest Count',
+                               'Incident Count': 'Opioid Incident Count'
+                               },
+                      inplace=True)
+
+    arrests_df = arrests_df.pivot(index=['County', 'Year'],
+                                  columns='Drug',
+                                  values=['Opioid Incident Count', 'Opioid Arrest Count']).reset_index()
+
+    arrests_df.columns = arrests_df.columns.map('-'.join).str.strip('-')
+    arrests_df.columns = arrests_df.columns = [s.replace('-', ' - ') for s in arrests_df.columns]
+
+    arrests_df = arrests_df.fillna(0)
+
+    return arrests_df
 
 
 def county_population():
     # Loading County Population dataset
     population_df = pd.read_csv('../data/Pulled/County_pop.csv')
 
+    population_df = population_df.rename(columns={
+        'Numeric_change': 'County Numeric Change Since 2010',
+        'Percent_Change': 'County Percent Change Since 2010',
+        '2020': 'County Population'})
+    population_df = population_df[['County',
+                                   'County Population',
+                                   'County Numeric Change Since 2010',
+                                   'County Percent Change Since 2010']]
+
+    # Filtering out Countys other than PA
+    population_df = population_df[population_df['County'] != 'Pennsylvania']
+
+    # Remove "County" from County name
+    cnt_pop_df = fix(population_df, inplace=False)
+    return cnt_pop_df
+
 
 def main():
-    opioid_list = ['CARFENTANIL',
-                  'FENTANYL',
-                  'FENTANYL ANALOG/OTHER SYNTHETIC OPIOID',
-                  'HEROIN', 'METHADONE',
-                  'PHARMACEUTICAL OPIOID',
-                  'SUBOXONE']
+    # opioid_list = ['CARFENTANIL',
+    #               'FENTANYL',
+    #               'FENTANYL ANALOG/OTHER SYNTHETIC OPIOID',
+    #               'HEROIN', 'METHADONE',
+    #               'PHARMACEUTICAL OPIOID',
+    #               'SUBOXONE']
+    #
+    # incidents_with_naloxone(opioid_list)
 
-    incidents_with_naloxone(opioid_list)
+    # print(takeback())
+    # print(treatment().sort_values(by='County'))
+    # print(takeback().sort_values(by='County'))
+    print(county_population())
 
 
 if __name__ == '__main__':
