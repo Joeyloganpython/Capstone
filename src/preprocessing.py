@@ -8,6 +8,7 @@ import datetime
 import seaborn as sns
 import numpy as np
 from functools import reduce
+import functools as ft
 
 
 # There is some datacleanup needed as some counties are in all caps and listed as PA
@@ -62,7 +63,7 @@ def extract_drugs_by_victim(df):
 
 def incidents_with_naloxone(opioid_list):
     # Loading PA GOV
-    df = pd.read_csv('../data/Pulled/Emergency_Medical_Services_(EMS)_Naloxone_Dose_Administered_CY_2018_-_Current_Quarterly_County_Health.csv')
+    df = pd.read_csv('../data/Pulled/Overdose_Information_Network_Data_CY_January_2018_-_Current_Monthly_County_State_Police.csv')
 
     keep_columns = ['Incident ID',
                     'Incident Date',
@@ -104,8 +105,6 @@ def incidents_with_naloxone(opioid_list):
     opdf['Incident Date ym'] = pd.to_datetime(opdf['Incident Date']).dt.to_period('Y')
     opdf['Incident Date ym'] = opdf['Incident Date ym'].astype(str)
     opdf['Incident Date ym'] = opdf['Incident Date ym'].astype(int)
-
-    print(opdf.head())
 
     # @TODO confirm with Joey whether this oppdf dataframe is needed or unintentional.
     oppdf = opdf.groupby(['Incident Date ym'])[['Incident ID']].count().reset_index()
@@ -245,12 +244,25 @@ def arrests():
 
     arrests_df = arrests_df.pivot(index=['County', 'Year'],
                                   columns='Drug',
-                                  values=['Opioid Incident Count', 'Opioid Arrest Count']).reset_index()
+                                  values=['Opioid Incident Count', 'Opioid Arrest Count', 'Drug Quantity']).reset_index()
 
     arrests_df.columns = arrests_df.columns.map('-'.join).str.strip('-')
     arrests_df.columns = arrests_df.columns = [s.replace('-', ' - ') for s in arrests_df.columns]
 
     arrests_df = arrests_df.fillna(0)
+
+    # Creating computed collumns
+    arrests_df['%Incidents Fentanyl'] = (arrests_df['Opioid Incident Count - Fentanyl'] /
+                                        (arrests_df['Opioid Incident Count - Fentanyl'] + arrests_df['Opioid Incident Count - Opium'] + arrests_df[
+                                            'Opioid Incident Count - Heroin'] * 100))
+
+    arrests_df['%Arrests Fentanyl'] = (arrests_df['Opioid Arrest Count - Fentanyl'] /
+                                      (arrests_df['Opioid Arrest Count - Fentanyl'] + arrests_df['Opioid Arrest Count - Opium'] + arrests_df[
+                                          'Opioid Arrest Count - Heroin'] * 100))
+
+    arrests_df['%Quantity Fentanyl'] = (arrests_df['Drug Quantity - Fentanyl'] /
+                                       (arrests_df['Drug Quantity - Fentanyl'] + arrests_df['Drug Quantity - Opium'] + arrests_df[
+                                           'Drug Quantity - Heroin'] * 100))
 
     return arrests_df
 
@@ -277,20 +289,36 @@ def county_population():
 
 
 def main():
-    # opioid_list = ['CARFENTANIL',
-    #               'FENTANYL',
-    #               'FENTANYL ANALOG/OTHER SYNTHETIC OPIOID',
-    #               'HEROIN', 'METHADONE',
-    #               'PHARMACEUTICAL OPIOID',
-    #               'SUBOXONE']
-    #
-    # incidents_with_naloxone(opioid_list)
+    opioid_list = ['CARFENTANIL',
+                  'FENTANYL',
+                  'FENTANYL ANALOG/OTHER SYNTHETIC OPIOID',
+                  'HEROIN', 'METHADONE',
+                  'PHARMACEUTICAL OPIOID',
+                  'SUBOXONE']
 
-    # print(takeback())
-    # print(treatment().sort_values(by='County'))
-    # print(takeback().sort_values(by='County'))
-    print(county_population())
+    # incidents = incidents_with_naloxone(opioid_list)
+    # drug_takeback = takeback()
+    # treatment_centers = treatment()
+    # risky = risky_prescribing()
+    # opioid_dispensation = dispensation()
+    # opioid_arrests = arrests()
+    # population = county_population()
 
+    df_list_county_and_year = [incidents_with_naloxone(opioid_list), risky_prescribing(),
+                               dispensation(), arrests()]
+
+    # merges all the datasets with County and Year granularity
+    merged_df = reduce(lambda left, right: pd.merge(left, right, on=['County', 'Year']), df_list_county_and_year)
+
+    df_list_county = [merged_df, takeback(), treatment()]
+
+    merged_df = reduce(lambda left, right: pd.merge(left, right, on='County'), df_list_county)
+
+    merged_df.rename(columns={'Number of Dispensations (by pharmacy location)': 'Total Drug Dispensation',
+                              'Number of Prescriptions (by patient location)': 'Total Prescriptions',
+                              }, inplace=True)
+
+    merged_df.to_csv('../data/Aggregated/main_county.csv')
 
 if __name__ == '__main__':
     main()
