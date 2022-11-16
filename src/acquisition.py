@@ -31,7 +31,7 @@ def get_data(client, dataset_key, overwrite=False):
     name = metadata['name'].replace(" ", "_")
     print(name)
 
-    path = f"..{dir_sep}data{dir_sep}Pulled\\{name}.csv"
+    path = f"..{dir_sep}data{dir_sep}Pulled{dir_sep}{name}.csv"
     if not os.path.isfile(path) or overwrite:
         results = client.get_all(id)
 
