@@ -1,6 +1,42 @@
  body{
  	text-align: center;
-background-image: linear-gradient(135deg, #89f7fe 10%, #66a6ff 100%);
+	background-image: linear-gradient(135deg, #89f7fe 10%, #66a6ff 100%);
+	box-sizing: border-box;
+}
+.sidebar{
+	position: fixed;
+	width:275px;
+	height: 100%;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+
+.nav{
+	margin-top: 25px;
+}
+
+.sidebar h1{
+	color: darkorange;
+	padding-top: 100px;
+	text-align: center;
+	text-shadow: 2px 2px 5px black;
+}
+
+.sidebar ul li{
+	line-height: 45px;
+	padding-left: 15px;
+	text-align: left;
+	list-style: none;
+
+}
+
+.sidebar ul li a {
+	text-decoration: none;
+	color: whitesmoke;
+	font-weight: bold;
+	font-size: 20px;
+	text-shadow: 2px 2px 5px black;
 }
 
 .viz-cont{
@@ -8,16 +44,29 @@ background-image: linear-gradient(135deg, #89f7fe 10%, #66a6ff 100%);
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+	text-align: center;
+	margin-left: 230px;
 }
 
 .viz{
 	display: block;
 }
 
+.smallviz{
+	margin-left: -200px ;
+}
+
 .horizontal_line{
+	width: 75%;
+	padding-left: 20%;
 	margin-top: 7%;
 	margin-bottom: 7%;
 }
+
+.current-page{
+	color: lightcoral;
+}
+
 
 hr{
 	width:70%;
@@ -36,3 +85,4 @@ h2{
 	margin-top: 5%;
 	margin-bottom: 2%;
 }
+

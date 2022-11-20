@@ -6,7 +6,7 @@
 
     <script type="text/javascript"></script>
 
-    <link rel="stylesheet" type="text/css" href="./CSS/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../CSS/styles.css" />
 </head>
 
 <body>
@@ -15,40 +15,39 @@
 
     <ul class = "nav">
       <li> 
-        <a href = "#">
-        	<span class = "current-page"> County Level Dashboard </span>
+        <a href = "../index.html"> County Level Dashboard </a> 
+      </li>
+
+      <li> 
+        <a href = "./state_level.html"> 
+        	State Level Dashboard
+        </a> 
+      </li>
+      <li> 
+        <a href = "#"> 
+        	<span class = "current-page">Survival Rate Dashboard </span>
         </a> 
       </li>
 
       <li> 
-        <a href = "./src/state_level.html"> State Level Dashboard </a> 
-      </li>
-
-      <li> 
-        <a href = "./src/survival_rate_wo_naloxone.html"> 
-        	Survival Rate Dashboard
-        </a> 
-      </li>
-
-      <li> 
-        <a href = "./src/risky_opioid_prescriptions_pa.html"> 
+        <a href = "./risky_opioid_prescriptions_pa.html"> 
         	Risky Prescription Story
         </a> 
       </li>
     </ul>
 
   </div>
-  <div calss="content">
+  <div class="content">
 	  <div>
 	    <h1> <i>Mid-Atlantic Opioid Task Force</i></h1>
 	    <h2 style="margin-top: -2%;"> Opioid Overdose Analysis</h2>
 	  </div>
-
-	  	<h2> PA County Analysis</h2>
+		
+		<h2> Survival Rate PA</h2>
 		<div class="viz-cont">
 			<div class="viz">
-				 <tableau-viz id="tableauViz"       
-				  src='https://public.tableau.com/views/PACountyOpioid/Story1?:language=en-US&:display_count=n&:origin=viz_share_link'>
+				<tableau-viz id="tableauViz2"
+					  src='https://public.tableau.com/shared/X3NTTJ6XZ?:display_count=n&:origin=viz_share_link'>
 				</tableau-viz>
 			</div>
 		</div>
