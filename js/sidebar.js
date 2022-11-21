@@ -53,7 +53,7 @@ for (let i = 0; i < buttons.length; i++) {
     }
   }
 
-  if(buttons[i]['filename'] == current_document_name || i == 0 && homepage){
+  if(buttons[i]['filename'] == current_document_name || (i == 0 && homepage)){
     let colored_text = document.createElement("span");
     colored_text.className = "current-page";
     colored_text.innerHTML = buttons[i]['name'];
