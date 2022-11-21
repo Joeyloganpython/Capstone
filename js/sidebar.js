@@ -17,12 +17,8 @@ let buttons =[
   }
 ]
 
-console.log(document.URL);
-console.log(document.URL.split("/").pop() + " test");
-console.log(document.URL.split("/").pop() == "index.html");
-
 var current_document_name = document.URL.split("/").pop();
-let homepage = document.URL.split("/").pop() == "index.html";
+let homepage = document.URL.split("/").pop() == "index.html" || document.URL.split("/").pop() == "";
 
 var sidebar = document.createElement('div');
 sidebar.className = 'sidebar';
@@ -38,13 +34,13 @@ list.className = 'nav';
 for (let i = 0; i < buttons.length; i++) {
   let line = document.createElement('li');
   let link = document.createElement('a');
-  line.appendChild(link);
+  
   if(homepage){
     if(i > 0){
       link.href = "./src/" + buttons[i]['filename'];
     }
     else{
-      link.href = "#";
+      link.href = "./index.html";
     }
   }
   else{
@@ -56,7 +52,7 @@ for (let i = 0; i < buttons.length; i++) {
       link.href = "./" + buttons[i]['filename'];
     }
   }
-  console.log(i , buttons[i]['filename'] == current_document_name);
+
   if(buttons[i]['filename'] == current_document_name){
     let colored_text = document.createElement("span");
     colored_text.className = "current-page";
@@ -66,7 +62,7 @@ for (let i = 0; i < buttons.length; i++) {
   else{
     link.innerHTML = buttons[i]['name'];
   }
-
+  line.appendChild(link);
   list.appendChild(line);
 }
 sidebar.appendChild(list);
