@@ -10,7 +10,13 @@
 	z-index: 1;
 	top: 0;
 	left: 0;
+	overflow-y: auto;
 }
+
+.sidebar::-webkit-scrollbar {
+	display: none;
+}
+
 
 .nav{
 	margin-top: 25px;
