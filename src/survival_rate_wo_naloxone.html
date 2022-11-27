@@ -2,9 +2,9 @@
 <head>
 
     <title>Opioid Overdose Analysis</title>
+    
       <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
-
-    <script type="text/javascript"></script>
+    <script type="text/javascript" src='../js/dashboards.js'></script>
 
     <link rel="stylesheet" type="text/css" href="../CSS/styles.css" />
 </head>
@@ -20,13 +20,8 @@
 	  </div>
 		
 		<h2> Survival Rate PA</h2>
-		<div class="viz-cont">
-			<div class="viz">
-				<tableau-viz id="tableauViz2"
-					  src='https://public.tableau.com/shared/X3NTTJ6XZ?:display_count=n&:origin=viz_share_link'>
-				</tableau-viz>
-			</div>
-		</div>
+		<script> show_dashboard("https://public.tableau.com/shared/X3NTTJ6XZ?:display_count=n&:origin=viz_share_link")</script>
+
 	</div>
 </body>
 

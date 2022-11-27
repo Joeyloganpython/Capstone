@@ -2,9 +2,9 @@
 <head>
 
     <title>Opioid Overdose Analysis</title>
+    
       <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
-
-    <script type="text/javascript"></script>
+    <script type="text/javascript" src='../js/dashboards.js'></script>
 
     <link rel="stylesheet" type="text/css" href="../CSS/styles.css" />
 </head>
@@ -21,13 +21,8 @@
 
 		
 		<h2> Risky Opioid Prescription PA</h2>
-		<div class="viz-cont">
-			<div class="viz smallviz">
-				<tableau-viz id="tableauViz2"
-					  src='https://public.tableau.com/views/RiskyOpioidPrescriptions/Policevs_EMS_1?:language=en-US&:display_count=n&:origin=viz_share_link'>
-				</tableau-viz>
-			</div>
-		</div>
+		<script> show_dashboard("https://public.tableau.com/views/RiskyOpioidPrescriptions/Policevs_EMS_1?:language=en-US&:display_count=n&:origin=viz_share_link")</script>
+		
 	</div>
 </body>
 
