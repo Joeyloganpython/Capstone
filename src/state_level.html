@@ -6,12 +6,17 @@
     <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
 
     <script type="text/javascript" src='../js/dashboards.js'></script>
-
+    <script type="text/javascript" src='../js/utils.js'></script>
+    
     <link rel="stylesheet" type="text/css" href="../CSS/styles.css" />
 </head>
 
 <body>
-  <script type="text/javascript" src='../js/sidebar.js'></script>
+  <div class = "sidebar" id = "menu">
+		  <button id = "open" class="openbtn" onclick="openNav()">☰ Menu</button>
+			<button id = "close" class="closebtn" onclick="closeNav()">X</button>
+		  <script type="text/javascript" src='../js/sidebar.js'></script>
+ 	</div>
 
   </div>
   <div class="content">

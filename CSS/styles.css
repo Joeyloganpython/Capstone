@@ -8,9 +8,10 @@
 	width:275px;
 	height: 100%;
 	z-index: 1;
-	top: 0;
+	top: 70;
 	left: 0;
-	overflow-y: auto;
+	overflow-y: scroll;
+	transition: height .7s; 
 }
 
 .sidebar::-webkit-scrollbar {
@@ -24,7 +25,7 @@
 
 .sidebar h1{
 	color: darkorange;
-	padding-top: 100px;
+	padding-top: 10px;
 	text-align: center;
 	text-shadow: 2px 2px 5px black;
 }
@@ -51,7 +52,7 @@
 	align-content: center;
 	align-items: center;
 	text-align: center;
-	margin-left: 230px;
+	margin-left: 300px;
 }
 
 .viz{
@@ -71,6 +72,8 @@
 
 .current-page{
 	color: lightcoral;
+	text-shadow: none;
+	font-size: 25px;
 }
 
 
@@ -92,3 +95,43 @@ h2{
 	margin-bottom: 2%;
 }
 
+
+.openbtn{
+	text-shadow: 2px 2px 5px black;
+  font-size: 20px;
+  background-color: inherit;
+  color: white;
+  padding-top: 50px;
+  padding-left: 50px;
+  border: none;
+  display: none;
+
+}
+
+.closebtn{
+	text-shadow: 2px 2px 5px black;
+  font-size: 20px;
+  padding-top: 50px;
+  padding-left: 50px;
+  background-color: inherit;
+  color: white;
+  border: none;
+  display: block;
+}
+
+@media screen and (max-width: 1280px) {
+    .sidebar ul li a {
+      font-size: 14px;
+    }
+
+    .current-page{
+    	font-size: 16px;
+    }
+    .openbtn{
+    	display: none;
+    }
+    .closebtn{
+    	display: block;
+    }
+
+}

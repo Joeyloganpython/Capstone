@@ -36,8 +36,8 @@ let buttons =[
 var current_document_name = document.URL.split("/").pop();
 let homepage = document.URL.split("/").pop() == "index.html" || document.URL.split("/").pop() == "";
 
-var sidebar = document.createElement('div');
-sidebar.className = 'sidebar';
+
+var sidebar = document.getElementById("menu");
 
 // Add heading to sidebar
 var heading = document.createElement('h1');
@@ -46,6 +46,8 @@ sidebar.appendChild(heading);
 
 let list = document.createElement('ul');
 list.className = 'nav';
+
+
 
 for (let i = 0; i < buttons.length; i++) {
   let line = document.createElement('li');
