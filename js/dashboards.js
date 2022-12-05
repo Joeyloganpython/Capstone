@@ -1,6 +1,6 @@
 
 function show_dashboard(link, small = false){
-
+	var dashboard_cont = document.getElementById("dashboard");
 	// Create viz-container
 	var viz_content = document.createElement('div');
 	viz_content.className = 'viz-cont';
@@ -20,5 +20,5 @@ function show_dashboard(link, small = false){
 	// Append all to document 
 	viz.appendChild(tableau_viz);
 	viz_content.appendChild(viz);
-	document.body.appendChild(viz_content);
+	dashboard_cont.appendChild(viz_content);
 }

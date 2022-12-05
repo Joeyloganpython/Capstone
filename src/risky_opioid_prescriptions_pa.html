@@ -24,10 +24,34 @@
 	    <h2 style="margin-top: -2%;"> Opioid Overdose Analysis</h2>
 	  </div>
 
-		
-		<h2> Risky Opioid Prescription PA</h2>
-		<script> show_dashboard("https://public.tableau.com/views/RiskyOpioidPrescriptions/Policevs_EMS_1?:language=en-US&:display_count=n&:origin=viz_share_link", true)</script>
-		
+	  <h2> Risky Opioid Prescription PA</h2>
+		<div id = "dashboard">
+				
+				<script> show_dashboard("https://public.tableau.com/views/RiskyOpioidPrescriptions/Policevs_EMS_1?:language=en-US&:display_count=n&:origin=viz_share_link", true)</script>
+		</div>
+
+
+		<hr class = "horizontal-line"></hr>
+		<div id = "notes">
+			<h2> Notes </h2>
+
+			<p> * There are 3 dashboards, each of which can be access by pressing their assigned tab in the top of the visualization.
+			<ul>
+
+				<li> There is a correlation between counties that have a high rate of being flagged for risky opioid prescription and a high rate of overall opioid prescription (Tab 1)</li>
+
+				<li> However, there is no relationship between risky prescription and overdose events (Tab 2)</li>
+
+				<li> It might suggests that overdoses are likely to occur because Fentanyl is laced in other drugs, or someone takes more than they are used to by accident</li>
+
+				<li> In Philadelphia, the number of police overdose events is low, and there is a high death rate (Tab 3) </li>
+
+				<li> Philadelphia was the highest for EMS encounters while remaining in the middle for police encounters</li>
+
+				<li> This may suggest that police let EMS handle those encounters or are not properly trained. Further, police may have the ability to arrive at a location faster</li>
+			</ul>
+		</div>
+		<div class = "gap"> </div>
 	</div>
 </body>
 
