@@ -342,6 +342,7 @@ def main():
                        'Drug Take-Back Sites',
                        'Drug Treatment Locations',
                        ]
+    merged_df.to_csv('../data/Aggregated/main_county_rawnumbers.csv', index=False)
 
     merged_df = rates_per_10000(merged_df, numeric_columns)
     merged_df.to_csv('../data/Aggregated/main_county.csv', index=False)
