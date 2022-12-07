@@ -34,6 +34,10 @@ let buttons =[
   {
     name: "Final Report",
     filename: "final_report.html"
+  },
+  {
+    name: "Data Sources",
+    filename: "data_sources.html"
   }
 ]
 
