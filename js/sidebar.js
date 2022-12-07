@@ -30,6 +30,10 @@ let buttons =[
   {
     name: "Risky Prescription",
     filename: "risky_opioid_prescriptions_pa.html"
+  },
+  {
+    name: "Final Report",
+    filename: "final_report.html"
   }
 ]
 

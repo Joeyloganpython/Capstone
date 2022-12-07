@@ -35,7 +35,6 @@
 	padding-left: 15px;
 	text-align: left;
 	list-style: none;
-
 }
 
 .sidebar ul li a {
@@ -130,6 +129,10 @@ h2{
 #notes h2 {
 	text-align: center;
 	margin-left: -23%;
+}
+
+#notes ul li{
+	margin-top: 10px;
 }
 
 .gap{ 
