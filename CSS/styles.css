@@ -91,18 +91,6 @@ hr{
 	align: center;
 }
 
-/*h1{
-	font-family: Brush Script;
-	margin-top: 5%;
-	margin-bottom: 3%;
-}
-
-h2{
-	font-family: Times New Roman;
-	margin-top: 5%;
-	margin-bottom: 2%;
-}*/
-
 
 .openbtn{
 	text-shadow: 2px 2px 5px black;
@@ -146,7 +134,7 @@ h2{
 
 }
 
-#notes h2 {
+#notes > h2 {
 	text-align: center;
 	margin-left: -23%;
 }
