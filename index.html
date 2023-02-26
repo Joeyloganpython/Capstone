@@ -1,51 +1,170 @@
 <html>
 <head>
-
     <title>Opioid Overdose Analysis</title>
 
-      <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
-
-    <script type="text/javascript" src='./js/dashboards.js'></script>
-    <script type="text/javascript" src='./js/utils.js'></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="./CSS/styles.css" />
 </head>
 
 <body>
-	<div class = "sidebar" id = "menu">
-		  <button id = "open" class="openbtn" onclick="openNav()">☰ Menu</button>
-			<button id = "close" class="closebtn" onclick="closeNav()">X</button>
-		  <script type="text/javascript" src='./js/sidebar.js'></script>
- 	</div>
-	
-  <div id = "main" class="content">
-	  <div>
-	    <h1> <i>Mid-Atlantic Opioid Task Force</i></h1>
-	    <h2 style="margin-top: -2%;"> Opioid Overdose Analysis</h2>
-	  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-	  <h2> PA County Analysis</h2>
-	  <div id = "dashboard">
-				<script> show_dashboard("https://public.tableau.com/views/PACountyOpioid/Story1?:language=en-US&:display_count=n&:origin=viz_share_link", true)</script>
-		</div>
+    <div class="gap-70"> </div>
+    <div class="container">
 
+        <h1> <i>Mid-Atlantic Opioid Task Force</i></h1>
 
-		<hr class = "horizontal-line"></hr>
-		<div id = "notes">
-			<h2> Notes </h2>
+        <div class="gap-30"> </div>
 
-			<ul>
-				<li> In Philadelphia, the percentage of Naloxone administered, as wel as survival rate, were decreased in 2021. </li>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne" >
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#about" aria-expanded="true" aria-controls="about" >
+                        About
+                    </button>
+                </h2>
+                <div id="about" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body" style="text-align: left;">
+                        Capstone project as part of MS in Data Science at Drexel University. This capstone project is focused on Opioid Drug Overdose in USA, especially in Pennsylvania with the goal of creating a comprehensive analysis that includes dashboards, and developing ML models to help emergency forces better prepare for the opioid pandemic, especially during peak times.
+                    </div>
+                </div>
+            </div>
 
-				<li> The drop in survival rate, might be related to the increase in Fentanyl arrests which suggests that Fentanyl was widely distributed. </li>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSetup">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#setup" aria-expanded="false" aria-controls="headingSetup">
+                    Setup
+                    </button>
+                </h2>
 
-				<li> Luzerne County was also impacted by the Fentanyl spike. However, the survival rate remain around 80%, probably due to Naloxone widely administered. </li>
-			</ul>
-		</div>
+                <div id="setup" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ol style="text-align: left;">
+                            <li>Create virtual environment <br> <code>python3 -m venv [name]</code></li>
+                            
+                            <br>
+                            <li>Change directory to the new environment and clone repository 
+                                <br> <code>cd [name]</code>
+                            </li>
 
-		<div class = "gap"> </div>
- 	<!-- <embed src="./test.pdf" width="800px" height="2100px" /> -->
-	</div>
+                            <br>
+                            <li>Activate the virtual environment running the following command:
+                                <br> <code># On macOS <br> source ./bin/activate</code>
+                            </li>
+
+                            <br>
+                            <li>
+                                Run the following command to install requirements:
+                                <br> <code>pip install -r ./[name]/requirements.txt</code>
+                            </li>
+
+                            <br>
+                            <li>
+                                Generate new API Keys (Census, and PAGOV), and store them as environment variables.
+                                <br><br>
+                                <h6>On macOS open terminal and follow instructions below </h6>
+                                <ul id="mac">
+                                    
+                                    <li>Run the following command: 
+                                        <br>
+                                        <code>open ~/.bash_profile</code>
+                                    </li>
+                                    <li>This command will open the file in a text edit. Simply add the
+                                        following lines to the end of file:
+                                        <br>
+                                        <code>export CENSUS_API_KEY={Your Census key} <br>
+                                        export SOCRATA_APP_TOKEN={Your Socrata key}
+                                        </code>
+                                    </li>
+                                    <li>Then, save the file and run the following command in the terminal:
+                                        <br><code>source ~/.bash_profile</code>
+                                    </li>
+                                    <li>To make sure it worked run the following command in the terminal:
+                                        <br><code>echo $CENSUS_API_KEY</code>
+                                        It should print the key
+                                    </li>
+                                </ul>
+
+                                <br>
+
+                                <h6>On Windows open CMD and follow instructions below </h6>
+                                <ul id="windows">
+                                    <li>Run the following commands: 
+                                        <br>
+                                        <code>setx CENSUS_API_KEY {Your Census API Key} /m <br>
+                                        setx SOCRATA_APP_TOKEN {Your Socrata API Key} /m</code>
+                                    </li>
+                                    <li>To make sure it worked run the following command in the terminal:
+                                        <br><code>set CENSUS_API_KEY</code>
+                                        It should print the key
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Exploratory Data Analysis (Capstone I)
+                    </button>
+                </h2>
+
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>County Level Dashboards</strong><br>
+                                <a href = "./src/EDA/pa_county.html">County Level</a>
+                                <br>
+                                <a href = "./src/EDA/survival_rate_wo_naloxone.html">Survival Rate by County</a>
+                                <br>
+                                <a href = "./src/EDA/risky_opioid_prescriptions_pa.html">Risky Prescription</a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <strong>State Level Dashboards</strong><br>
+                                <a href = "./src/EDA/state_level.html">Overdose Death Analysis</a>
+                                <br>
+                                <a href = "./src/EDA/overdose_per_10000.html">Overdose Death by State Per 10,000 population</a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <strong>Time Dashboards</strong><br>
+                                <a href = "./src/EDA/overdose_incident_time.html">Time Analysis</a>
+                                <br>
+                                <a href = "./src/EDA/day_and_time.html">Day Analysis</a>
+                                <br>
+                                <a href = "./src/EDA/incidents_monthly.html">Month Analysis</a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href = "./src/EDA/final_report.html">EDA - Final Report</a>
+                            </li>
+                        </ul>
+                        <!-- <div class="panel-footer"></div> -->
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Machine Learning Models (Capstone II)
+                    </button>
+
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Coming Soon...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

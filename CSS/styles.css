@@ -4,6 +4,14 @@
 	box-sizing: border-box;
 	overflow-x: none;
 }
+
+.gap-70{
+	height:70px;
+}
+.gap-30{
+	height:30px;
+}
+
 .sidebar{
 	position: fixed;
 	width:275px;
@@ -83,7 +91,7 @@ hr{
 	align: center;
 }
 
-h1{
+/*h1{
 	font-family: Brush Script;
 	margin-top: 5%;
 	margin-bottom: 3%;
@@ -93,7 +101,7 @@ h2{
 	font-family: Times New Roman;
 	margin-top: 5%;
 	margin-bottom: 2%;
-}
+}*/
 
 
 .openbtn{

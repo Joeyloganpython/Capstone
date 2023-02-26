@@ -1,7 +1,7 @@
 let buttons =[
   {
     name: "County Level",
-    filename: "index.html",
+    filename: "pa_county.html",
   },
   {
     name: "State Level",
@@ -42,8 +42,6 @@ let buttons =[
 ]
 
 var current_document_name = document.URL.split("/").pop();
-let homepage = document.URL.split("/").pop() == "index.html" || document.URL.split("/").pop() == "";
-
 
 var sidebar = document.getElementById("menu");
 
@@ -60,26 +58,9 @@ list.className = 'nav';
 for (let i = 0; i < buttons.length; i++) {
   let line = document.createElement('li');
   let link = document.createElement('a');
-  
-  if(homepage){
-    if(i > 0){
-      link.href = "./src/" + buttons[i]['filename'];
-    }
-    else{
-      link.href = "./index.html";
-    }
-  }
-  else{
-    if(i == 0){
-      link.href = "../" + buttons[i]['filename'];
-    }
-    else
-    {
-      link.href = "./" + buttons[i]['filename'];
-    }
-  }
+  link.href = "./" + buttons[i]['filename'];
 
-  if(buttons[i]['filename'] == current_document_name || (i == 0 && homepage)){
+  if(buttons[i]['filename'] == current_document_name ){
     let colored_text = document.createElement("span");
     colored_text.className = "current-page";
     colored_text.innerHTML = buttons[i]['name'];
