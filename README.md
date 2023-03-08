@@ -23,7 +23,7 @@ The goal of the project is to get overdose data from CDC, PA and other states in
 
 4. Run the following command to install requirements:
     ```
-    pip install -r requirements.txt
+    pip install -r ./Capstone/requirements.txt
     ```
 5. Generate new API Keys (Census, and PAGOV), and store them as environment variables:
     - On macOS open terminal and run the following:
