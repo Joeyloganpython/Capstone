@@ -1,0 +1,80 @@
+<html>
+	<head>
+
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+	    <link rel="stylesheet" type="text/css" href="../../CSS/styles.css" />
+	    <script type="text/javascript" src='../../js/ML_tabs.js'></script>
+	</head>
+
+	<body>
+	 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+	 	<ul class="nav nav-pills nav-justified" id = "tabs">
+	 		<script> show_tabs(4)</script>
+		</ul>
+	    <div class="gap-70"> </div>
+	    <div class="container">
+
+	        <h1> 
+	        	<i>Mid-Atlantic Opioid Task Force</i>
+	       	</h1>
+
+			<div class="gap-30"> </div>
+
+	        <h2> Dataset </h2>
+	        <p>The index is a timestamp representating the first day of the month starting at 2018 up to the end of 2022. Each row contains the current count of overdose events, the next month's count (x_1), and so on till x_4 (lag of 5). Same apply for targets, each row contains 5 targets (y_0 to y_4) where y_0 is the month that comes after x_4: </p>
+	        <figure>
+	        	<div class="gap-10"> </div>
+				<img src="../../img/timeseries-dataset.png" class="rounded img-fluid" alt="Timeseries Dataset Sample">
+				<div class="gap-10"> </div>
+				<figcaption>Fig.1 - Sample Data</figcaption>
+			</figure>
+
+			<div class="gap-30"> </div>
+			<h2> Pseudo-code </h2>
+			<ol style="text-align: left;">
+				<li>Create lags as features and targets (previous counts and target counts)</li>
+				<li>Convert month and year features to datetime index as drop them. </li>
+				<li>While desired date is not reached</li>
+					<ol type="i">
+						<li>If not first iteration:</li>
+							<ol type="A">
+								<li>Append a new row whom index is the next month datetime object.</li>
+								<li>Left shift all values to the left, and set last column (y_4) to NaN (to be predicted)</li>
+								<li>Split data </li>
+							</ol>
+						<li>Initialize estimator.</li>
+						<li>Fit & predict.</li>
+						<li>Set y_4 to the predicted value.</li>
+						<li>Increase iteration’s index variable</li>
+					</ol>
+				<li>Calculate RMSE</li>
+				<li>Plot input + forecast</li>
+				<li>Plot Seasonal Decomposition</li>
+			</ol>
+
+			<div class="gap-30"> </div>
+			<h2> Performance </h2>
+			<p>Performance evaluation was executed using both RMSE calculation and a graph showing the input, test and forecast. The graph was created using matplotlib packages, and ipywidgets package was utilized in order to provide a convenient way to explore different counties, as well as hyper parameter tuning. Ipywidgets is a python package to create widgets such as button, dropdowns and sliders and together with matplotlib the below grah was created:
+			</p>
+			<figure>
+				<div class="gap-10"> </div>
+				<img src="../../img/timeseries-forecast.png" class="rounded img-fluid" alt="Dashboard in Jupyter Notebook">
+				<div class="gap-10"> </div>
+				<figcaption>Fig.2 - Dashboard in Jupyter Notebook</figcaption>
+			</figure>
+			<p>In the figure above, there are a few dropdowns (County, Regressor, Criterion, Max Features), and three sliders (Year, Month and N Estimators). Every time a value is changed, the new model will be trained on the input data for the corresponding County, and forecast up to the desired date (year and month). For instance, the above example shows a forecast with Gradient Boosting regressor, on Cumberland County, up to January 2025. 
+			</p>
+
+			<p>The bottom graphs show time-series decomposition process. The top graph is the time-series itself, second is the trend, or the tendency of the data, third graph shows seasonality, or the frequency presented in the data, and the bottom is called residual, which is the noise. It should be random, otherwise there is more information to be explored in the time-series.
+			</p>
+
+	       	<div class="gap-30"> </div>
+
+
+	        
+	    </div>
+	</body>
+</html>
