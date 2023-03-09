@@ -12,10 +12,6 @@ let buttons =[
     filename: "survival_clf.html",
   },
   {
-    name: "Classification - Naloxone",
-    filename: "naloxone_clf.html"
-  },
-  {
     name: "Time Series County Level",
     filename: "timeseries.html"
   },
