@@ -8,7 +8,7 @@ let buttons =[
     filename: "cluster.html",
   },
   {
-    name: "Classification - Survival",
+    name: "Classification",
     filename: "survival_clf.html",
   },
   {
