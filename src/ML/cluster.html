@@ -95,8 +95,31 @@
 
 
 	        <div class="gap-30"> </div>
-	        <h2> Dataset </h2>
 
+	        <h2> Performance </h2>
+	        <ul style = "text-align: left;">
+	        	<li>Our best clustering results were obtained with the KMeans algorithm with K=6. The clusters had a Silhouette score of 0.195  and a Calinski-Harabasz Score of 10.333. These scores are not ideal and indicate that the clusters are not well separated.</li>
+
+	        	<li>Nonetheless, the resultant clusters did provide meaningful insight into survivability statistics with the various clusters showing significant variability in the percent of overdose incidents where the victim survived. The % Survival varied from 53.9% in Cluster 2 to 85.3% in Cluster 5. 
+
+
+	        		<center>
+				        <figure style = "width: 60%; height:auto;">
+				        	<div class="gap-10"> </div>
+							<img src="../../img/cluster-results.png" class="rounded img-fluid" alt="Results">
+							<div class="gap-10"> </div>
+							<figcaption>Fig.2 - Cluster Results </figcaption>
+						</figure>
+					</center>
+	        	</li>
+
+
+	        	<li>The other algorithms we explored gave poorer results, so the main limitation in clustering appears to be the dataset itself. Additional work on feature engineering and / or acquisition of new and features might result in better defined clusters. </li>
+
+
+	        <ul>
+
+	        <div class="gap-70"> </div>
 
 	    </div>
 	</body>
