@@ -12,12 +12,60 @@
 	 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 	 	<ul class="nav nav-pills nav-justified" id = "tabs">
-	 		<script> show_tabs(5)</script>
+	 		<script> show_tabs(4)</script>
 		</ul>
 	    <div class="gap-70"> </div>
 	    <div class="container">
 
 	        <h1> <i>Mid-Atlantic Opioid Task Force</i></h1>
+
+	        <div class="gap-30"> </div>
+
+	        <h2> Dataset </h2>
+	        <p> For each state, the population estimation and overdose deaths for years 2015 - 2021 were read from CDC datasets. Then, calculated the number of overdose deaths per 10,000 for every combination of state (rows) and year (columns) as can be seen below: </p>
+	        <figure>
+	        	<div class="gap-10"> </div>
+				<img src="../../img/lr-dataset.png" class="rounded img-fluid" alt="State Level Dataset Sample">
+				<div class="gap-10"> </div>
+				<figcaption>Fig.1 - Data Sample</figcaption>
+			</figure>
+
+			<div class="gap-30"> </div>
+			<h2> Pseudo-code </h2>
+			<ol style="text-align: left;">
+				<li> Create dataset </li>
+				<li> Loop over years starting at the following to the last year in dataset up to the desired year </li>
+					<ol type="i">
+						<li>Loop over states (rows) in the data set</li>
+							<ol type="A">
+								<li> Create features (years) and targets (deaths) </li>
+								<li> Split data </li>
+								<li> Initialize Linear Regression </li>
+								<li> Fit estimator </li>
+								<li> Predict for the next year </li>
+								<li> Append the prediction to that state (row) in the dataframe </li>
+							</ol>
+					</ol>
+			</ol>
+
+			<div class="gap-30"> </div>
+			<h2> Evaluation </h2>
+			<p>The results for 4 states are shown below. The graphs x-axis is the years, and y-axis is the count of overdose death per 10,000. The orange graph represent the average of all states, so Pennsylvania and Delaware are predicted to have more deaths than the average, whereas Texas is predicted to have lower deaths.</p>
+
+			<figure>
+				<div class="gap-10"> </div>
+				<img src="../../img/lr-results.png" class="rounded img-fluid" alt=" Linear Regression Results">
+				<div class="gap-10"> </div>
+				<figcaption>Fig.2 - Linear Regression Results</figcaption>
+			</figure>
+
+			<div class="gap-30"> </div>
+			<h2> Limitations </h2>
+			<ul style="text-align: left;">
+				<li> State level data only has a time series of the year and the count of overdose deaths. </li>
+				<li> Overdose deaths per 10,000 calculation is based on population estimate, and not on actual population.</li>
+			</ul>
+
 
 	        <div class="gap-30"> </div>
 	    </div>
