@@ -20,9 +20,82 @@
 	    <div class="container">
 
 	        <h1> <i>Mid-Atlantic Opioid Task Force</i></h1>
+	        
+	        <div class="gap-30"> </div>
+	        <h2> Goal </h2>
+	        <p>Cluster analysis is an unsupervised machine-learning approach. In the context of this project, we attempted to create meaningful clusters of counties that could be used to (1) provide an informative description of the opioid epidemic as it pertains to Pennsylvania counties and (2) to provide a potentially valuable feature for the classification models for opioid survival or Naloxone administration. </p>
+
+			<div class="gap-30"> </div>
+
+	        <h2> Dataset </h2>
+	        <p> We performed cluster analysis on our county characteristics dataset. This dataset provides demographic and opioid related features at the county-level. </p>
+		    <center>
+		        <figure style = "width: 60%; height:auto;">
+		        	<div class="gap-10"> </div>
+					<img src="../../img/cluster-features.png" class="rounded img-fluid" alt="Features Explanation">
+					<div class="gap-10"> </div>
+					<figcaption>Fig.1 - Features Explanation </figcaption>
+				</figure>
+			</center>
 
 	        <div class="gap-30"> </div>
 
+	        <h2> Pseudo-code </h2>
+
+	        <ul style="text-align: left;">
+				<li> DBScan </li>
+				
+					<ul>
+						<li> Loop over each unvisited instance in the dataset:</li>
+							<ul>
+								<li> Mark the instance as visited </li>
+								<li> Find all neighbors for the instance within a specified distance (eps) </li>
+								<li> If # of neighbors is greater than or equal to the specified min # neighbors: </li>
+								<ul>
+									<li>Create new cluster C</li>
+									<li>ExpandCluster(P, neighbors, C)</li>
+								</ul>
+							</ul>
+							<li> ExpandCluster(P, neighbors, C): </li>
+								<ul>
+									<li>Add point P to cluster C</li>
+									<li>Loop over each point in neighbors:</li>
+										<ul>
+											<li>Mark the point as visited</li>
+											<li>Find all neighbors’ for the instance within a specified distance (eps)</li>
+											<li>If # of neighbors’ is greater than or equal to the specified min # neighbors -> Join neighbors’ with neighbors</li>
+
+											<li>If the point is not yet a member of any cluster -> Add the point to cluster C</li>
+										</ul>
+								</ul>
+						
+					</ul>
+
+				<li> KMeans </li>
+					<ul>
+						<li> Create n singleton clusters (where each point is a cluster) </li>
+						<li> Loop through following steps until centroid shift is less than some threshold:</li>
+							<ul>
+								<li>Assign each sample to the nearest centroid</li>
+								<li>Create new centroids by computing the mean value of the points assigned to each centroid. </li>
+
+							</ul>
+					</ul>
+
+				<li> Agglomerative Clustering </li>
+					<ul>
+						<li> Loop through following steps until centroid shift is less than some threshold:</li>
+						<li>While the number of clusters is greater than some pre-specified number n:</li>
+							<ul><li>Combine the two closest clusters into a single cluster --> </li><ul>
+					</ul>
+				</ul>
+
+			</ul>
+		</ul>
+
+
+	        <div class="gap-30"> </div>
+	        <h2> Dataset </h2>
 
 
 	    </div>
