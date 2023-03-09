@@ -12,7 +12,7 @@
 	 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 	 	<ul class="nav nav-pills nav-justified" id = "tabs">
-	 		<script> show_tabs(4)</script>
+	 		<script> show_tabs(3)</script>
 		</ul>
 	    <div class="gap-70"> </div>
 	    <div class="container">
@@ -21,15 +21,18 @@
 	        	<i>Mid-Atlantic Opioid Task Force</i>
 	       	</h1>
 
-			<div class="gap-30"> </div>
+	       	<div class="gap-30"> </div>
+	        <h2> Goal </h2>
+	        <p> Utilize univariate time series approach in order to forecast the number of Opioid overdose incidents on the county level. Univariate time series approach uses previous values to predict future values, thus adjusting to trends and seasonality presented in the data. </p>
 
+			<div class="gap-30"> </div>
 	        <h2> Dataset </h2>
 	        <p>The index is a timestamp representating the first day of the month starting at 2018 up to the end of 2022. Each row contains the current count of overdose events, the next month's count (x_1), and so on till x_4 (lag of 5). Same apply for targets, each row contains 5 targets (y_0 to y_4) where y_0 is the month that comes after x_4: </p>
 	        <figure>
 	        	<div class="gap-10"> </div>
 				<img src="../../img/timeseries-dataset.png" class="rounded img-fluid" alt="Timeseries Dataset Sample">
 				<div class="gap-10"> </div>
-				<figcaption>Fig.1 - Sample Data</figcaption>
+				<figcaption>Fig.1 - Data Sample</figcaption>
 			</figure>
 
 			<div class="gap-30"> </div>
