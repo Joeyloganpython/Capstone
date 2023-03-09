@@ -19,6 +19,106 @@
 
 	        <h1> <i>Mid-Atlantic Opioid Task Force</i></h1>
 
+	         <div class="gap-30"> </div>
+
+	        <h2> Goal </h2>
+	        <p> Utilize machine learning in order to classify Opioid overdose incidents occurred in Pennsylvania. </p>
+
+	        <div class="gap-30"> </div>
+
+	        <h2> Dataset </h2>
+	        <p>There are two classification models: one predicts survival, and another predicts Naloxone administration. Both models are similar, and therefore the input data is similar as well. Below are the features for the Survival classification model: </p>
+
+	        <center>
+		        <figure style = "width: 60%; height:auto;">
+		        	<div class="gap-10"> </div>
+					<img src="../../img/survival-clf-dataset.png" class="rounded img-fluid" alt="Data Sample">
+					<div class="gap-10"> </div>
+					<figcaption>Fig.1 - Data Sample </figcaption>
+				</figure>
+			</center>
+
+			<div class="gap-30"> </div>
+			<h2> Pseudo-code </h2>
+			<ol style="text-align: left;">
+				<li> Create dataset </li>
+				<li> Split data </li>
+				<li> Initialize pipelines with the desired estimators </li>
+				<li> Fit pipelines </li>
+				<li> Cross-validate using StratifiedKFold (sklearn) </li>
+				<li> Plot threshold scores to find the best threshold (maximize both AUC and Matthew’s scores) </li>
+				<li> Use that threshold to predict </li>
+			</ol>
+
+			<div class="gap-30"> </div>
+	        <h2> Class Balance </h2>
+	        <p> As can be seen below, the class is unbalanced, so class weights will be taken into account, as well as other evaluation methods such as ROC AUC and Matthews Correlation Coefficient.</p>
+	         <center>
+		        <figure style = "width: 60%; height:auto;">
+		        	<div class="gap-10"> </div>
+					<img src="../../img/clf-class-imbalance.png" class="rounded img-fluid" alt="Class Balance">
+					<div class="gap-10"> </div>
+					<figcaption>Fig.2 - Class Balance</figcaption>
+				</figure>
+			</center>
+
+			<div class="gap-30"> </div>
+	        <h2> Baseline </h2>
+	        <p>Predicted survived if Naloxone was administered and there were no multiple drugs consumed: </p>
+	        <script src="https://gist.github.com/avivfaraj/299faf227b47b4f6c03488491146b9d0.js"></script>
+	        <center>
+		        <figure style = "width: 60%; height:auto;">
+		        	<div class="gap-10"> </div>
+					<img src="../../img/clf-dummy.png" class="rounded img-fluid" alt="Baseline Results">
+					<div class="gap-10"> </div>
+					<figcaption>Fig.3 - Baseline Results</figcaption>
+				</figure>
+			</center>
+
+			<div class="gap-30"> </div>
+	        <h2> Correlation Heatmap </h2>
+	        <p> Used Spearman correlation and Seaborn package to draw a heatmap: </p>
+	        <script src="https://gist.github.com/avivfaraj/c7df34ebf5c7d5be84a7dc0f01061a99.js"></script>
+		     <center>
+		        <figure style = "width: 50%; height:auto;">
+		        	<div class="gap-10"> </div>
+					<img src="../../img/clf-corr-heatmap.png" class="rounded img-fluid" alt="Correlation Heatmap">
+					<div class="gap-10"> </div>
+					<figcaption>Fig.4 - Correlation Heatmap</figcaption>
+				</figure>
+			</center>
+
+	        <div class="gap-30"> </div>
+	        <h2> Methods </h2>
+	        <ul style="text-align: left;">
+				<li> Radom Forest’s allowed us to examine gini importance index which is excellent at interpreting how the model made its predictions. </li>
+				<li> Logistic regression is a simple but powerful model that often provides reliable results. </li>
+				<li> A Decision Tree model was used because of the ability to plot the individual steps that the model took to make its prediction. </li>
+			</ul>
+
+			<div class="gap-30"> </div>
+	        <h2> Evaluation </h2>
+	        <p> Created a graph that shows the AUC and Matthew's scores as function of the threshold. The graph was generated using a function, so it could be generated for any model we utilized. Below is the result of Random Forest: </p>
+			<center>
+		        <figure style = "width: 60%; height:auto;">
+		        	<div class="gap-10"> </div>
+					<img src="../../img/clf-thresholds.png" class="rounded img-fluid" alt="AUC and Matthew scores as function of thresholds">
+					<div class="gap-10"> </div>
+					<figcaption>Fig.5 - AUC and Matthew scores as function of thresholds</figcaption>
+				</figure>
+			</center>
+
+			<p>After choosing a threshold of 0.6, a manual iteration was done in order to maximize confusion matrix' results: </p>
+
+			<center>
+		        <figure style = "width: 40%; height:auto;">
+		        	<div class="gap-10"> </div>
+					<img src="../../img/clf-survival-results.png" class="rounded img-fluid" alt="Random Forest Final Results with threshold = 0.64">
+					<div class="gap-10"> </div>
+					<figcaption>Fig.6 - Random Forest Final Results with threshold = 0.64</figcaption>
+				</figure>
+			</center>
+
 	        <div class="gap-30"> </div>
 	    </div>
 	</body>
